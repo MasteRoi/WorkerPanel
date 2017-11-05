@@ -21,7 +21,7 @@ require_once('../mysqli_connect.php');
 $wrk_id = $_GET['id'];
 
 $query = "SELECT first_name, last_name, email, street, city, state, zip,
-phone, birth_date, sex, lunch_cost FROM workers WHERE worker_id=$wrk_id";
+phone, birth_date, sex, lunch_cost, unilink FROM workers WHERE worker_id=$wrk_id";
 
 
 $response = @mysqli_query($dbc, $query);
@@ -59,7 +59,9 @@ if($response){
 		
 		
 		'<input type="hidden" name="wrk_id" value="'. $wrk_id .'">';
-	
+		
+		echo '<a href="landing?uid='.$row['unilink'].'">Answer the worker poll</a> <br/>';
+
 		echo '<ul><li><input type=submit name="submit" value="Update" />&nbsp;&nbsp;';
 		echo '<input type=submit name="delete" value="Delete" />&nbsp;&nbsp;'.
 			'<input type="button" onclick="goBack()" value="Go Back" /></li><ul></form></div>';
